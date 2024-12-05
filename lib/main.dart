@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Consumos do Carro',
       theme: ThemeData(primarySwatch: Colors.blue),
+      debugShowCheckedModeBanner: false, // Remove o banner de debug
       home: HomePage(),
     );
   }
@@ -160,7 +161,11 @@ class _AddRefuelingPageState extends State<AddRefuelingPage> {
                     return 'Por favor, insira a quilometragem';
                   }
 
-                  final double kilometers = double.tryParse(value) ?? 0.0;
+                  final double kilometers = double.tryParse(value) ?? -1.0;
+                  if (kilometers < 0) {
+                    return 'A quilometragem não pode ser negativa';
+                  }
+
                   if (widget.existingRefuelings.isNotEmpty) {
                     final double maxKilometers = widget.existingRefuelings
                         .map((e) => e['kilometers'] as double)
@@ -177,15 +182,35 @@ class _AddRefuelingPageState extends State<AddRefuelingPage> {
                 controller: _litersController,
                 decoration: InputDecoration(labelText: 'Litros Abastecidos'),
                 keyboardType: TextInputType.number,
-                validator: (value) =>
-                    value!.isEmpty ? 'Por favor, insira os litros' : null,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Por favor, insira os litros';
+                  }
+
+                  final double liters = double.tryParse(value) ?? -1.0;
+                  if (liters < 0) {
+                    return 'Os litros não podem ser negativos';
+                  }
+
+                  return null;
+                },
               ),
               TextFormField(
                 controller: _costController,
                 decoration: InputDecoration(labelText: 'Custo (€)'),
                 keyboardType: TextInputType.number,
-                validator: (value) =>
-                    value!.isEmpty ? 'Por favor, insira o custo' : null,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Por favor, insira o custo';
+                  }
+
+                  final double cost = double.tryParse(value) ?? -1.0;
+                  if (cost < 0) {
+                    return 'O custo não pode ser negativo';
+                  }
+
+                  return null;
+                },
               ),
               SizedBox(height: 20),
               ElevatedButton(
