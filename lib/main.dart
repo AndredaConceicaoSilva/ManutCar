@@ -1,28 +1,33 @@
 import 'package:flutter/material.dart';
-import 'consumos.dart'; // Certifique-se de importar o arquivo consumos.dart
+import 'package:manutcar/user_provider.dart';
+import 'consumos.dart';
+
 
 void main() {
   runApp(MyApp());
 }
 
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'App com Menu Lateral',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      debugShowCheckedModeBanner: false,
-      home: MenuPage(),
+    return UserProvider(
+      child: MaterialApp(
+        title: 'ManutCar',      
+        theme: ThemeData(primarySwatch: Colors.blue),
+        debugShowCheckedModeBanner: false, // Remove o rótulo "Debug"
+        home: MenuPage(),
+      ),
     );
   }
 }
-
+ 
 class MenuPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Página Principal'),
+        title: Text('Menu Principal'),
       ),
       drawer: Drawer(
         child: ListView(
@@ -31,8 +36,11 @@ class MenuPage extends StatelessWidget {
             DrawerHeader(
               decoration: BoxDecoration(color: Colors.blue),
               child: Text(
-                'Menu Lateral',
-                style: TextStyle(color: Colors.white, fontSize: 24),
+                'ManutCar Menu',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
               ),
             ),
             ListTile(
@@ -50,10 +58,11 @@ class MenuPage extends StatelessWidget {
       ),
       body: Center(
         child: Text(
-          'Bem-vindo á ManutCar',
-          style: TextStyle(fontSize: 24),
+          'Bem-vindo ao ManutCar!',
+          style: TextStyle(fontSize: 20),
         ),
       ),
     );
   }
 }
+ 

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "357341662031",
+    "project_id": "manutcar-16445",
+    "storage_bucket": "manutcar-16445.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:357341662031:android:a32dcf0dbcdd23c36c133a",
+        "android_client_info": {
+          "package_name": "com.example.manutcar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzphZY5Yak5DtoWlrWUXJ1PZm2IXKQkiI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
